@@ -5,27 +5,46 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import modelo.Movimiento;
 
 public class Controlador implements Initializable {
+
     // atributos
-    @FXML
-    Circle circulo;
+    int contador;
     @FXML
     Pane principal;
 
+    @FXML
+    Button boton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        circulo.setLayoutX(principal.getPrefWidth() / 2);
-        circulo.setLayoutY(principal.getPrefHeight() / 2);
-        circulo.setRadius(5);
-        circulo.setFill(Color.RED);
+        contador = 0;
+    }
 
-        Movimiento movimiento = new Movimiento(circulo, principal, 30);
+    public void nuevaPelota(MouseEvent e) {
+        Circle circle = new Circle(e.getX(), e.getY(), 10, Color.RED);
+        circle.setId("circulo"+contador);
+        contador++;
+        Movimiento movimiento = new Movimiento(circle, principal, 15);
         movimiento.start();
+        principal.getChildren().add(circle);
+        
+
+    }
+
+    public void aumentaPelota(MouseEvent e){
+        Circle circle = new Circle(e.getX(), e.getY(), 10, Color.RED);
+        circle.setId("circulo"+contador);
+        contador++;
+        Movimiento movimiento = new Movimiento(circle, principal, 15);
+        movimiento.start();
+        principal.getChildren().add(circle);
     }
 
 }

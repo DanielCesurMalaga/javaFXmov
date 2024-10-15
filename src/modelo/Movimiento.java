@@ -17,51 +17,63 @@ public class Movimiento extends Thread {
 
     public void mover() throws InterruptedException {
         double finX = pane.getPrefWidth();
-        System.out.println("finX: "+finX);
         double ppioX = 0;
         double sentidoX = +1;
-        double posX = circulo.getLayoutX();
-
+        double posX = circulo.getCenterX();
         double finY = pane.getPrefHeight();
-        System.out.println("finY: "+finX);
         double ppioY = 0;
         double sentidoY = +1;
-        double posY = circulo.getLayoutY();
-
+        double posY = circulo.getCenterY();
+        double radio = circulo.getRadius();
 
         while (true) {
             posX = posX + sentidoX;
-            if ((posX >= pane.getWidth()) || (posX == ppioX)) {
+
+            if ((posX + radio >= finX) || (posX - radio <= ppioX)) {
                 sentidoX = sentidoX * (-1);
-                if (sentidoX > 0) {
-                    circulo.setFill(Color.RED);
-                } else {
-                    circulo.setFill(Color.BLUE);
-                }
                 posX = posX + sentidoX;
+                circulo.setRadius(radio+1);
+                radio++;
             }
-            circulo.setLayoutX(posX);
+            circulo.setCenterX(posX);
 
             posY = posY + sentidoY;
-            if ((posY >= pane.getHeight()) || (posY == ppioY)) {
+            if ((posY + radio >= finY) || (posY - radio <= ppioY)) {
                 sentidoY = sentidoY * (-1);
-                if (sentidoY > 0) {
-                    circulo.setFill(Color.RED);
-                } else {
-                    circulo.setFill(Color.BLUE);
-                }
                 posY = posY + sentidoY;
+                circulo.setRadius(radio+1);
+                radio++;
             }
-            circulo.setLayoutY(posY);
+            circulo.setCenterY(posY);
 
             Thread.sleep(velocidad);
-            System.out.println(pane.getWidth());
+
         }
+    }
+
+    public void aumentar() throws InterruptedException{
+        double finX = pane.getPrefWidth();
+        double finY = pane.getPrefHeight();
+
+        double posX = circulo.getCenterX();       
+        double posY = circulo.getCenterY();
+
+        double radio = circulo.getRadius();
+        boolean dentro = true;
+
+        while (dentro){
+            circulo.setRadius(radio+1);
+            radio++;
+            Thread.sleep(velocidad);
+            if ((posX+radio>=finX)||(posX-radio<=0)) dentro = false;
+            if ((posY+radio>=finY)||(posY-radio<=0)) dentro = false;
+        }
+
     }
 
     public void run() {
         try {
-            mover();
+            aumentar();
         } catch (InterruptedException e) {
 
         }
