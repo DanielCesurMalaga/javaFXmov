@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Controlador">
+<VBox id="escenarioPrincipal" fx:id="escenarioPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="610.0" spacing="10.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Controlador">
    <children>
-      <Circle fx:id="circulo" />
-      <Button fx:id="boton" layoutX="250.0" layoutY="350" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="otro círculo" />     
+      <Pane id="escenarioArriba" fx:id="escenarioArriba" onMouseClicked="#posicionRaton" prefHeight="400.0" prefWidth="600.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></Pane>
+      <Pane id="escenarioAbajo" fx:id="escenarioAbajo" prefHeight="200.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="479.0" layoutY="31.0" mnemonicParsing="false" text="mover" />
+            <Button layoutX="479.0" layoutY="85.0" mnemonicParsing="false" text="Posicionar" />
+            <Label fx:id="etiqueta1" layoutX="50.0" layoutY="25.0" onMouseClicked="#etiquetaSeleccionada" text="Bola1: ( , )" />
+            <Label fx:id="etiqueta2" layoutX="50.0" layoutY="50.0" onMouseClicked="#etiquetaSeleccionada" text="Bola2: ( , )" />
+            <Label fx:id="etiqueta3" layoutX="50.0" layoutY="75.0" onMouseClicked="#etiquetaSeleccionada" text="Bola3 ( , )" />
+            <Label fx:id="etiqueta4" layoutX="50.0" layoutY="100.0" onMouseClicked="#etiquetaSeleccionada" text="Bola4: ( , )" />
+            <Label fx:id="etiqueta5" layoutX="50.0" layoutY="125.0" onMouseClicked="#etiquetaSeleccionada" text="Bola5 ( , )" />
+         </children></Pane>
    </children>
-</Pane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
